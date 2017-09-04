@@ -5,15 +5,14 @@ package ru.job4j;
  *@version 1
  *@since 31.08.2017
  */
-public class Calculate{
+public class Calculate {
 	/**
-	* Метод - вывод строки в консоль
+	* Метод - вывод строки в консоль.
 	* @param args -args. входящий параметр
 	*/
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		System.out.println("Hello world");
 	}
-	
 	/**
     * Method echo.
     * @param name Your name.
@@ -22,7 +21,4 @@ public class Calculate{
 	public String echo(String name) {
     return "Echo, echo, echo : " + name;
 }
-	
-	
-	
 }
