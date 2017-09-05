@@ -1,8 +1,6 @@
 package ru.job4j;
 
 import org.junit.Test;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -17,18 +15,20 @@ import static org.junit.Assert.assertThat;
 public class CalculateTest {
 /**
 * Test echo.
-*/ @Test
+*/
+/**
+* Test.
+*/
+@Test
 
 public void whenTakeNameThenTreeEchoPlusName() {
   String input = "Tatyana Fukova";
  String expect = "Echo, echo, echo : Tatyana Fukova";
- 
  //Создание нового объекта.
 Calculate calc = new Calculate();
 
 //Выполнение метода echo с параметром input и запись ее в переменную result.
-String result = calc.echo(input); 
-
+String result = calc.echo(input);
 //сравнение двух значений result и expect
 assertThat(result, is(expect));
 }
