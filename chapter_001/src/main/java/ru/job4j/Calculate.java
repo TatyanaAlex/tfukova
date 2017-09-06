@@ -11,6 +11,7 @@ public class Calculate {
 	* @param args -args. входящий параметр
 	*/
 	public static void main(String[] args) {
+
 		System.out.println("Hello world");
 	}
 	/**
