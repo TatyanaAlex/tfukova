@@ -16,6 +16,7 @@ public class Point{
     public int getY() {
         return this.y;
     }
+
     public boolean is(int a, int b){
         return y == a*x +b;
 
