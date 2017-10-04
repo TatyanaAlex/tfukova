@@ -8,9 +8,9 @@ public class ContainWord{
         char arr2[] = sub.toCharArray();
         for (int i = 0; i <arr.length ; i++) {
             if (arr[i] == arr2[0]){
-                int found = 0;
-                int currentPosition = i;
-                for (int j = 0; j <arr2.length ; j++) {
+                int found = 1;
+                int currentPosition = i + 1;
+                for (int j = 1; j <arr2.length ; j++) {
                     if(arr2[j] == arr[currentPosition]){
                         found++;
                         currentPosition++;
