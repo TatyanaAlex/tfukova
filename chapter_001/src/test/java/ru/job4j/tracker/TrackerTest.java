@@ -49,6 +49,6 @@ public class TrackerTest {
         Item[] arrayToFind = {item};
         assertThat(tracker.findByName("test1"), is(arrayToFind));
     }
-    
+
 
 }

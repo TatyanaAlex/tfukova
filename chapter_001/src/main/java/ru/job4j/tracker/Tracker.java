@@ -1,11 +1,15 @@
 package ru.job4j.tracker;
 
+import java.util.Random;
+
 public class Tracker {
 
     private Item[] items = new Item[100];
     private int position = 0;
+    private static final Random random = new Random();
 
     public Item add(Item item){
+        item.setId(String.valueOf(random.nextInt()));
         this.items[position++] = item;
         return item;
     }
