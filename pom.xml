@@ -8,9 +8,9 @@
 <url>http://job4j.ru/</url>
 
 <properties>
-<maven.compiler.source>1.8</maven.compiler.source>
-<maven.compiler.target>1.8</maven.compiler.target>
-<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 </properties>
 
 <modules>
@@ -33,36 +33,36 @@
     </dependency>
 </dependencies>
 <build>
-<plugins>
-<plugin>
-<groupId>org.apache.maven.plugins</groupId>
-<artifactId>maven-checkstyle-plugin</artifactId>
-<version>2.17</version>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-            <compilerVersion>1.8</compilerVersion>
-        </configuration>
-    </plugin>
-<executions>
-<execution>
-<id>validate</id>
-<phase>validate</phase>
-<configuration>
-<configLocation>checkstyle.xml</configLocation>
-<encoding>UTF-8</encoding>
-<consoleOutput>true</consoleOutput>
-<failsOnError>true</failsOnError>
-<includeTestSourceDirectory>true</includeTestSourceDirectory>
-</configuration>
-<goals>
-<goal>check</goal>
-</goals>
-</execution>
-</executions>
-</plugin>
-</plugins>
+    <plugins>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>2.17</version>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <compilerVersion>1.8</compilerVersion>
+                </configuration>
+            </plugin>
+            <executions>
+                <execution>
+                    <id>validate</id>
+                    <phase>validate</phase>
+                    <configuration>
+                        <configLocation>checkstyle.xml</configLocation>
+                        <encoding>UTF-8</encoding>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    </configuration>
+                    <goals>
+                    <goal>check</goal>
+                    </goals>
+                </execution>
+            </executions>
+            </plugin>
+    </plugins>
 </build> 
 </project>
