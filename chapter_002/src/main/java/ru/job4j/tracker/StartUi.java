@@ -11,12 +11,17 @@ public class StartUi {
     private static final String EXIT = "6";
 
     private Input input;
-    public StartUi(Input input){
+    private Tracker tracker;
+
+    public StartUi(Input input, Tracker tracker){
+
         this.input=input;
+        this.tracker = tracker;
     }
     public static void main(String[] args) {
         Input input = new ConsoleInput();
-        new StartUi(input).init();
+        Tracker tracker = new Tracker();
+        new StartUi(input, tracker).init();
 
     }
 
@@ -31,7 +36,7 @@ public class StartUi {
                 "5. Find items by name\n" +
                 "6. Exit Program\n" +
                 "Select:");
-        Tracker tracker = new Tracker();
+
 
         if(ADD.equals(chosenItem)){
             String answer = input.ask("Please enter 'name', 'description', 'create' separated by comma");
