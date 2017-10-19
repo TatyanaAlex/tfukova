@@ -5,7 +5,7 @@
  * @version $I$
  * @since 15.10.17
  */
- package ru.job4j.tracker;
+package ru.job4j.tracker;
 
 import java.util.Scanner;
 

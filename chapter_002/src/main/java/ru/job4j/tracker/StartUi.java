@@ -22,7 +22,7 @@ public class StartUi {
     /**
      * variable corresponding to the menu's item number 1.
      */
-    private static final String SHOWAll = "1";
+    private static final String SHOWALL = "1";
     /**
      * variable corresponding to the menu's item number 2.
      */
@@ -87,11 +87,11 @@ public class StartUi {
         if (ADD.equals(chosenItem)) {
             String answer = input.ask("Please enter 'name', 'description', 'create' separated by comma");
             String[] array = answer.split(",");
-            Item item = new Item(array[0], array[1], Long.getLong(array[2]));
+            Item item = new Item(array[0],  array[1],  Long.getLong(array[2]));
             tracker.add(item);
             this.init();
         }
-        if (SHOWAll.equals(chosenItem)) {
+        if (SHOWALL.equals(chosenItem)) {
             tracker.findAll();
             this.init();
         }
