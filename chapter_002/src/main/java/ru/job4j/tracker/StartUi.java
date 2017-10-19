@@ -87,7 +87,7 @@ public class StartUi {
         if (ADD.equals(chosenItem)) {
             String answer = input.ask("Please enter 'name', 'description', 'create' separated by comma");
             String[] array = answer.split(",");
-            Item item = new Item(array[0],  array[1],  Long.getLong(array[2]));
+            Item item = new Item(array[0],  array[1],  Long.valueOf(array[2]).longValue());
             tracker.add(item);
             this.init();
         }
@@ -98,14 +98,14 @@ public class StartUi {
         if (EDIT.equals(chosenItem)) {
             String answer = input.ask("Please enter 'name', 'description', 'create' separated by comma");
             String[] array = answer.split(",");
-            Item item = new Item(array[0], array[1], Long.getLong(array[2]));
+            Item item = new Item(array[0], array[1], Long.valueOf(array[2]).longValue());
             tracker.update(item);
             this.init();
         }
         if (DELETE.equals(chosenItem)) {
             String answer = input.ask("Please enter 'name', 'description', 'create' separated by comma");
             String[] array = answer.split(",");
-            Item item = new Item(array[0], array[1], Long.getLong(array[2]));
+            Item item = new Item(array[0], array[1], Long.valueOf(array[2]).longValue());
             tracker.delete(item);
             this.init();
         }
