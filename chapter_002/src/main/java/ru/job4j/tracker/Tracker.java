@@ -75,9 +75,9 @@ public class Tracker {
     public Item[] findAll() {
         Item[] itemsToCopy = new Item[this.position];
         int count = 0;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) {
-                itemsToCopy[count] = items[i];
+        for (int i = 0; i < this.items.length; i++) {
+            if (this.items[i] != null) {
+                itemsToCopy[count] = this.items[i];
                 count++;
             }
 
