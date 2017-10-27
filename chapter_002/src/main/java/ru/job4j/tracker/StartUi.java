@@ -15,42 +15,7 @@
  */
 public class StartUi {
 
-    /**
-     * variable corresponding to the menu's item number 0.
-     */
-    private static final String ADD = "0";
-    /**
-     * variable corresponding to the menu's item number 1.
-     */
-    private static final String SHOWALL = "1";
-    /**
-     * variable corresponding to the menu's item number 2.
-     */
-    private static final String EDIT = "2";
-    /**
-     * variable corresponding to the menu's item number 3.
-     */
-    private static final String DELETE = "3";
-    /**
-     * variable corresponding to the menu's item number 4.
-     */
-    private static final String FINDBYID = "4";
-    /**
-     * variable corresponding to the menu's item number 5.
-     */
-    private static final String FINDBYNAME = "5";
-    /**
-     * variable corresponding to the menu's item number 6.
-     */
-    private static final String EXIT = "6";
-
-    /**
-     * object of the Input class.
-     */
     private Input input;
-    /**
-     * object of the Tracker class.
-     */
     private Tracker tracker;
 
     /**
@@ -74,7 +39,6 @@ public class StartUi {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
         new StartUi(input, tracker).init();
-
     }
 
     /**
@@ -82,51 +46,16 @@ public class StartUi {
      */
     public void init() {
 
-        String chosenItem = input.ask("" + "0. Add new Item\n" + "1. Show all items\n" + "2. Edit item\n" + "3. Delete item\n" + "4. Find item by Id\n" + "5. Find items by name\n" + "6. Exit Program\n" + "Select:");
+        //input.ask("" + "0. Add new Item\n" + "1. Show all items\n" + "2. Edit item\n" + "3. Delete item\n" + "4. Find item by Id\n" + "5. Find items by name\n" + "6. Exit Program\n" + "Select:");
+        MenuTracker menu = new MenuTracker(this.input, tracker);
+        menu.fillActions();
 
-        if (ADD.equals(chosenItem)) {
-            String answer = input.ask("Please enter 'name', 'description', 'create' separated by comma");
-            String[] array = answer.split(",");
-            Item item = new Item(array[0], array[1],  Long.valueOf(array[2]).longValue());
-            tracker.add(item);
-            this.init();
-        }
-        if (SHOWALL.equals(chosenItem)) {
-            tracker.findAll();
-            this.init();
-        }
-        if (EDIT.equals(chosenItem)) {
-            String answer = input.ask("Please enter 'name', 'description', 'create' separated by comma");
-            String[] array = answer.split(",");
-            Item item = new Item(array[0], array[1],  Long.valueOf(array[2]).longValue());
-            String answ = input.ask("Please enter Id");
-            item.setId(answ);
-            tracker.update(item);
-            this.init();
-        }
-        if (DELETE.equals(chosenItem)) {
-            String answer = input.ask("Please enter 'name', 'description', 'create' separated by comma");
-            String[] array = answer.split(",");
-            Item item = new Item(array[0], array[1],  Long.valueOf(array[2]).longValue());
-            String answ = input.ask("Please enter Id");
-            item.setId(answ);
-            tracker.delete(item);
-            this.init();
-        }
-        if (FINDBYID.equals(chosenItem)) {
-            String answer = input.ask("Please enter 'Id'");
-            tracker.findById(answer);
-            this.init();
+        do{
+            menu.show();
+            int key = Integer.valueOf(input.ask("Select: "));
+            menu.select(key);
 
-        }
-        if (FINDBYNAME.equals(chosenItem)) {
-            String answer = input.ask("Please enter 'name'");
-            tracker.findByName(answer);
-            this.init();
-        }
-        if (EXIT.equals(chosenItem)) {
-            System.out.println("Goodbye");
-        }
+        }while(!"yes".equals(this.input.ask("Exit (yes/no)? ")));
     }
 
 }
