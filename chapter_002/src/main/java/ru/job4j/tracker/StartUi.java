@@ -15,6 +15,7 @@
  */
 public class StartUi {
 
+    private int[] ranges = new int[] {0, 1, 2, 3, 4, 5, 6};
     private Input input;
     private Tracker tracker;
 
@@ -36,7 +37,7 @@ public class StartUi {
      * @since 15.10
      */
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         Tracker tracker = new Tracker();
         new StartUi(input, tracker).init();
     }
@@ -52,8 +53,7 @@ public class StartUi {
 
         do{
             menu.show();
-            int key = Integer.valueOf(input.ask("Select: "));
-            menu.select(key);
+            menu.select(input.ask("Select: ", ranges));
 
         }while(!"yes".equals(this.input.ask("Exit (yes/no)? ")));
     }

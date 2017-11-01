@@ -13,4 +13,6 @@ public interface Input {
      * @return question
      */
     String ask(String question);
+
+    int ask (String question, int[] range);// перезагружаем метод
 }

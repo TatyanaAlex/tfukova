@@ -27,12 +27,12 @@ public class MenuTracker {
     private Tracker tracker;
     private UserAction[] actions = new UserAction[7];
 
-    public MenuTracker(Input input, Tracker tracker) {
+        public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
 
-    // метод, который инициализирует события
+        // метод, который инициализирует события
     public void fillActions() {
         this.actions[0] = this.new AddItem();//создаём внутренний обьект и передаем в него значение нашего input и tracker.Обращ.через обьект(нестатический класс)
         this.actions[1] = new MenuTracker.ShowAllItems();//т.к статический внутренний класс, то обращаемся через внешний класс
@@ -86,7 +86,7 @@ public class MenuTracker {
             for(Item item : tracker.findByName(name)){
                 System.out.println(String.format("%s. %s", item.getId(), item.getName()));
             }
-            
+
         }
         @Override
         public String info() {
