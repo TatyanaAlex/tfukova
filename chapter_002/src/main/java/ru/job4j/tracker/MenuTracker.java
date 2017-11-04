@@ -1,11 +1,12 @@
 package ru.job4j.tracker;
 
 //создаем внешний внутренний класс (внешний класс который находится в файле публичного класса)
-class EditItem extends BaseAction{
-    public int key(){
+class EditItem extends BaseAction {
+    public int key() {
         return 2;
     }
-    public void execute(Input input, Tracker tracker){
+
+    public void execute(Input input, Tracker tracker) {
         String id = input.ask("Please enter the Item's Id: ");
         String name = input.ask("Please enter the Item's name: ");
         String desc = input.ask("Please enter the Item's description: ");
@@ -18,8 +19,8 @@ class EditItem extends BaseAction{
     public String info() {
         return String.format("%s. %s", this.key(), "Edit the Item");
     }
-
 }
+
 
 public class MenuTracker {
 
