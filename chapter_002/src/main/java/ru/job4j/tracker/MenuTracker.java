@@ -1,7 +1,7 @@
 package ru.job4j.tracker;
 
 //создаем внешний внутренний класс (внешний класс который находится в файле публичного класса)
-class EditItem implements UserAction{
+class EditItem extends BaseAction{
     public int key(){
         return 2;
     }
@@ -25,7 +25,7 @@ public class MenuTracker {
 
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[7];
+    private BaseAction[] actions = new BaseAction[7];
 
         public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -58,7 +58,7 @@ public class MenuTracker {
     }
 
     //создаём нестатический внутренний класс, который находится в теле внешнего класса (MenuTracker)
-    private class AddItem implements UserAction{
+    private class AddItem extends BaseAction{
         public int key(){
             return 0;
         }
@@ -76,7 +76,7 @@ public class MenuTracker {
         }
     }
 
-    private class FindByName implements UserAction{
+    private class FindByName extends BaseAction{
         public int key(){
 
             return 5;
@@ -96,7 +96,7 @@ public class MenuTracker {
     }
 
     //создаем статический внутренний класс
-    private static class ShowAllItems implements UserAction{
+    private static class ShowAllItems extends BaseAction{
         public int key(){
             return 1;
         }
@@ -112,7 +112,7 @@ public class MenuTracker {
 
     }
 
-    private static class DeleteItem implements UserAction{
+    private static class DeleteItem extends BaseAction{
         public int key(){
             return 3;
         }
@@ -132,7 +132,7 @@ public class MenuTracker {
 
     }
 
-    private static class FindById implements UserAction{
+    private static class FindById extends BaseAction{
         public int key(){
             return 4;
         }
@@ -148,7 +148,7 @@ public class MenuTracker {
         }
 
     }
-    private static class Exit implements UserAction{
+    private static class Exit extends BaseAction{
         public int key(){
             return 6;
         }
