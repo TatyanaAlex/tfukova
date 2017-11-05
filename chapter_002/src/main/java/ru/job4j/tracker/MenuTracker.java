@@ -2,8 +2,12 @@ package ru.job4j.tracker;
 
 //создаем внешний внутренний класс (внешний класс который находится в файле публичного класса)
 class EditItem extends BaseAction {
+
+    public EditItem(String name, int key){
+        super(name, key);
+    }
     public int key() {
-        return 2;
+        return super.key;
     }
 
     public void execute(Input input, Tracker tracker) {
@@ -15,10 +19,7 @@ class EditItem extends BaseAction {
         item.setId(id);
         tracker.update(item);
     }
-    @Override
-    public String info() {
-        return String.format("%s. %s", this.key(), "Edit the Item");
-    }
+
 }
 
 
@@ -35,13 +36,13 @@ public class MenuTracker {
 
         // метод, который инициализирует события
     public void fillActions() {
-        this.actions[0] = this.new AddItem();//создаём внутренний обьект и передаем в него значение нашего input и tracker.Обращ.через обьект(нестатический класс)
-        this.actions[1] = new MenuTracker.ShowAllItems();//т.к статический внутренний класс, то обращаемся через внешний класс
-        this.actions[2] = new EditItem();// т.к внешний класс то вызываем его напрямую
-        this.actions[3] = new MenuTracker.DeleteItem();
-        this.actions[4] = new MenuTracker.FindById();
-        this.actions[5] = this.new FindByName();
-        this.actions[6] = new MenuTracker.Exit();
+        this.actions[0] = this.new AddItem("Add new Item", 0);//создаём внутренний обьект и передаем в него значение нашего input и tracker.Обращ.через обьект(нестатический класс)
+        this.actions[1] = this.new ShowAllItems("Show all Items", 1);//т.к статический внутренний класс, то обращаемся через внешний класс
+        this.actions[2] = new EditItem("Edit Item", 2);// т.к внешний класс то вызываем его напрямую
+        this.actions[3] = this.new DeleteItem("Delete the Item", 3);
+        this.actions[4] = this.new FindById("Find the Item by Id",4);
+        this.actions[5] = this.new FindByName("Find the Item by Name",5);
+        this.actions[6] = this.new Exit("Exit program", 6);
     }
     // добавляем метод который будет выполнять наши действия
     public void select(int key){
@@ -60,8 +61,12 @@ public class MenuTracker {
 
     //создаём нестатический внутренний класс, который находится в теле внешнего класса (MenuTracker)
     private class AddItem extends BaseAction{
+        public AddItem(String name, int key) {
+            super(name, key);
+        }
+
         public int key(){
-            return 0;
+            return super.key;
         }
         public void execute(Input input, Tracker tracker){
             String name = input.ask("Please enter the Item's name ");
@@ -71,52 +76,50 @@ public class MenuTracker {
 
         }
 
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Add new Item");
-        }
     }
 
     private class FindByName extends BaseAction{
-        public int key(){
-
-            return 5;
+        public FindByName(String name, int key) {
+            super(name, key);
         }
-        public void execute(Input input, Tracker tracker){
+
+        public int key(){
+            return super.key;
+        }
+        public void execute(Input input, Tracker tracker) {
             String name = input.ask("Please enter the Item's name: ");
-            for(Item item : tracker.findByName(name)){
+            for (Item item : tracker.findByName(name)) {
                 System.out.println(String.format("%s. %s", item.getId(), item.getName()));
             }
-
         }
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Find the Item by Name");
-        }
-
     }
 
-    //создаем статический внутренний класс
-    private static class ShowAllItems extends BaseAction{
-        public int key(){
-            return 1;
+
+    private class ShowAllItems extends BaseAction{
+        public ShowAllItems(String name, int key){
+        super(name, key);
         }
+        public int key(){
+            return super.key;
+        }
+
         public void execute(Input input, Tracker tracker){
             for(Item item : tracker.findAll()){
                 System.out.println(String.format("%s. %s", item.getId(), item.getName()));
             }
         }
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Show all Items");
-        }
-
     }
 
-    private static class DeleteItem extends BaseAction{
-        public int key(){
-            return 3;
+    private class DeleteItem extends BaseAction{
+
+            public DeleteItem(String name, int key) {
+            super(name, key);
         }
+
+        public int key(){
+            return super.key;
+        }
+
         public void execute(Input input, Tracker tracker){
             String id = input.ask("Please enter the Item's Id: ");
             String desc = input.ask("Please enter the Item's description: ");
@@ -126,40 +129,36 @@ public class MenuTracker {
             item.setId(id);
             tracker.delete(item);
         }
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Delete the Item");
-        }
 
     }
 
-    private static class FindById extends BaseAction{
-        public int key(){
-            return 4;
+    private class FindById extends BaseAction{
+        public FindById(String name, int key) {
+            super(name, key);
         }
+
+        public int key(){
+            return super.key;}
         public void execute(Input input, Tracker tracker){
             String id = input.ask("Please enter the Item's Id: ");
             Item item = tracker.findById(id);
             System.out.println(String.format("%s. %s", item.getId(), item.getName()));
 
         }
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Find the Item by Id");
+    }
+
+    private class Exit extends BaseAction {
+        public Exit(String name, int key) {
+            super(name, key);
+        }
+
+        public int key() {
+            return super.key;
+        }
+
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("Goodbye");
         }
 
     }
-    private static class Exit extends BaseAction{
-        public int key(){
-            return 6;
-        }
-        public void execute(Input input, Tracker tracker){
-            System.out.println("Goodbye");
-         }
-        @Override
-        public String info() {
-            return String.format("%s. %s", this.key(), "Exit program");
-        }
-        }
-
 }
