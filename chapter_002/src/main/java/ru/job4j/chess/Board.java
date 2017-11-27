@@ -26,22 +26,22 @@ public class Board {
      * @return result if the figure is able to move to the set position
      */
     boolean move(Cell source, Cell dist){
-        boolean canMove = true;
+
         if(figures[source.x][source.y] == null){
-            canMove = false;
+
             throw new FigureNotFoundException("Figure is not found");
         }
         Cell[] pathFigure = figures[source.x][source.y].way(dist);
         for (int i = 1; i < pathFigure.length; i++) {
             if(figures[pathFigure[i].x][pathFigure[i].y]!=null){
-                canMove = false;
+
                 throw new OccupiedWayException("Occupied position.");
             }
         }
-        if(canMove){
-            figures[dist.x][dist.y] = figures[source.x][source.y];
-            figures[source.x][source.y] = null;
-        }
-        return canMove;
+
+        figures[dist.x][dist.y] = figures[source.x][source.y];
+        figures[source.x][source.y] = null;
+
+        return true;
     }
 }
