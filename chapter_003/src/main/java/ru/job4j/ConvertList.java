@@ -17,34 +17,34 @@ public class ConvertList {
      * @param array double array.
      * @return list.
      */
-    public List<Integer> toList (int[][] array) {
+    public List<Integer> toList(int[][] array) {
 
         List<Integer> list = new ArrayList<>();
-        for (int[] x  : array ) {
-            for (int y : x){
+        for (int[] x  : array) {
+            for (int y : x) {
                 list.add(Integer.valueOf(y));
             }
         }
     return list;
     }
-    
+
     /**
      * Method to convert list to array.
      * @param list given collection.
      * @param rows number of rows in the array
      * @return array.
      */
-    public int[][] toArray (List<Integer> list, int rows) {
+    public int[][] toArray(List<Integer> list, int rows) {
 
-        int rowlength = list.size()/rows;
-        rowlength += list.size()%rows;
+        int rowlength = list.size() / rows;
+        rowlength += list.size() % rows;
         Iterator iterator = list.iterator();
         int[][] array = new int[rows][rowlength];
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < rowlength ; j++) {
+            for (int j = 0; j < rowlength; j++) {
                 if (iterator.hasNext()) {
                     array[i][j] = Integer.parseInt(iterator.next().toString());
-                }else{
+                } else {
                     array[i][j] = 0;
                 }
 

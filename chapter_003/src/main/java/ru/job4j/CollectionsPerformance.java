@@ -19,14 +19,14 @@ public class CollectionsPerformance {
 
         CollectionsPerformance collectionsPerformance = new CollectionsPerformance();
 
-        System.out.println("time of addition for arraylist = " + collectionsPerformance.addToCollection(arraylist, 500 ));
-        System.out.println("removal time for arraylist = " + collectionsPerformance.deleteFromCollection(arraylist, 50 ));
+        System.out.println("time of addition for arraylist = " + collectionsPerformance.addToCollection(arraylist, 500));
+        System.out.println("removal time for arraylist = " + collectionsPerformance.deleteFromCollection(arraylist, 50));
 
-        System.out.println("time of addition for linkedlist = " + collectionsPerformance.addToCollection(linkedlist, 500 ));
-        System.out.println("removal time for linkedlist = " + collectionsPerformance.deleteFromCollection(linkedlist, 50 ));
+        System.out.println("time of addition for linkedlist = " + collectionsPerformance.addToCollection(linkedlist, 500));
+        System.out.println("removal time for linkedlist = " + collectionsPerformance.deleteFromCollection(linkedlist, 50));
 
-        System.out.println("time of addition for treeset = " + collectionsPerformance.addToCollection(treeset, 500 ));
-        System.out.println("removal time for treeset = " + collectionsPerformance.deleteFromCollection(treeset, 50 ));
+        System.out.println("time of addition for treeset = " + collectionsPerformance.addToCollection(treeset, 500));
+        System.out.println("removal time for treeset = " + collectionsPerformance.deleteFromCollection(treeset, 50));
     }
     /**
      * Method to add the elements to the collection.
@@ -39,7 +39,7 @@ public class CollectionsPerformance {
         for (int i = 0; i < amount; i++) {
             collection.add(String.valueOf(i));
         }
-       return System.nanoTime()- startTime;
+       return System.nanoTime() - startTime;
 
     }
 
@@ -53,14 +53,14 @@ public class CollectionsPerformance {
         long startTime = System.nanoTime();
         for (int i = 0; i < amount; i++) {
             Iterator iterator = collection.iterator();
-            if (iterator.hasNext()){
+            if (iterator.hasNext()) {
                 iterator.next();
                 iterator.remove();
 
             }
 
         }
-        return System.nanoTime()- startTime;
+        return System.nanoTime() - startTime;
     }
 
 }
