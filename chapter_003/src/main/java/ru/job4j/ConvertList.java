@@ -1,6 +1,7 @@
 package ru.job4j;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -53,5 +54,20 @@ public class ConvertList {
         }
 
          return array;
+    }
+    /**
+     * Method to convert list of array to List of Integers.
+     * @param list given list of arrays.
+     * @return List of Integers.
+     */
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> finalList = new ArrayList<>();
+        for (int[]array : list) {
+            for (int i : array) {
+                finalList.add(i);
+            }
+        }
+
+        return finalList;
     }
 }
