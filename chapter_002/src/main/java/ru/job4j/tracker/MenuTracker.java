@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+
 //создаем внешний внутренний класс (внешний класс который находится в файле публичного класса)
 class EditItem extends BaseAction {
 
@@ -27,7 +29,7 @@ public class MenuTracker {
 
     private Input input;
     private Tracker tracker;
-    private BaseAction[] actions = new BaseAction[7];
+    private ArrayList<BaseAction> actions = new ArrayList<>();
 
         public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
@@ -36,17 +38,17 @@ public class MenuTracker {
 
         // метод, который инициализирует события
     public void fillActions() {
-        this.actions[0] = this.new AddItem("Add new Item", 0);//создаём внутренний обьект и передаем в него значение нашего input и tracker.Обращ.через обьект(нестатический класс)
-        this.actions[1] = this.new ShowAllItems("Show all Items", 1);//т.к статический внутренний класс, то обращаемся через внешний класс
-        this.actions[2] = new EditItem("Edit Item", 2);// т.к внешний класс то вызываем его напрямую
-        this.actions[3] = this.new DeleteItem("Delete the Item", 3);
-        this.actions[4] = this.new FindById("Find the Item by Id",4);
-        this.actions[5] = this.new FindByName("Find the Item by Name",5);
-        this.actions[6] = this.new Exit("Exit program", 6);
+        this.actions.add(0, this.new AddItem("Add new Item", 0));//создаём внутренний обьект и передаем в него значение нашего input и tracker.Обращ.через обьект(нестатический класс)
+        this.actions.add(1, this.new ShowAllItems("Show all Items", 1));//т.к статический внутренний класс, то обращаемся через внешний класс
+        this.actions.add(2, new EditItem("Edit Item", 2));// т.к внешний класс то вызываем его напрямую
+        this.actions.add(3, this.new DeleteItem("Delete the Item", 3));
+        this.actions.add(4, this.new FindById("Find the Item by Id",4));
+        this.actions.add(5, this.new FindByName("Find the Item by Name",5));
+        this.actions.add(6, this.new Exit("Exit program", 6));
     }
     // добавляем метод который будет выполнять наши действия
     public void select(int key){
-        this.actions[key].execute(this.input, this.tracker);
+        this.actions.get(key).execute(this.input, this.tracker);
 
     }
 

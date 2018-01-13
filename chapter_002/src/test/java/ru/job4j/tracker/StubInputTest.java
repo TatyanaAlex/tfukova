@@ -11,7 +11,7 @@ public class StubInputTest {
         Tracker tracker = new Tracker();   // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name,desc,5", "6"}); //создаём StubInput с последовательностью действий
         new StartUi(input, tracker).init();  //   создаём StartUI и вызываем метод init()
-        assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+        assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
     @Test
@@ -20,7 +20,7 @@ public class StubInputTest {
         Item item = tracker.add(new Item("test name", "desc", 5));
         Input input = new StubInput(new String[]{"1", "6"});
         new StartUi(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is(item.getName()));
+        assertThat(tracker.findAll().get(0).getName(), is(item.getName()));
 
     }
 
@@ -53,7 +53,7 @@ public class StubInputTest {
         Item item = tracker.add(new Item("test name", "desc", 5));
         Input input = new StubInput(new String[]{"4", item.getId(), "6"});
         new StartUi(input, tracker).init();
-        assertThat(tracker.findAll()[0].getId(), is(item.getId()));
+        assertThat(tracker.findAll().get(0).getId(), is(item.getId()));
     }
     @Test
     public void whenPutNameThemTrackerFindsByName() {
@@ -61,7 +61,7 @@ public class StubInputTest {
         Item item = tracker.add(new Item("test name", "desc", 5));
         Input input = new StubInput(new String[]{"5", item.getName(), "6"});
         new StartUi(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("test name"));
+        assertThat(tracker.findAll().get(0).getName(), is("test name"));
     }
 
 

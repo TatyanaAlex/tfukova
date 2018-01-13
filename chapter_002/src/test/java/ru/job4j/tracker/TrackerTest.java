@@ -7,6 +7,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -26,7 +29,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         tracker.add(item);
-        assertThat(tracker.findAll()[0], is(item));
+        assertThat(tracker.findAll().get(0), is(item));
     }
     /**
      * check that after changing the name, the item with the same Id has the new name.
@@ -70,7 +73,8 @@ public class TrackerTest {
         Item item = new Item("test1", "testDescription", 123L);
         item.setId("This is ID number 1");
         tracker.add(item);
-        Item[] arrayToFind = {item};
-        assertThat(tracker.findByName("test1"), is(arrayToFind));
+        ArrayList<Item> listToFind = new ArrayList<>();
+        listToFind.add(item);
+        assertThat(tracker.findByName("test1"), is(listToFind));
     }
 }
