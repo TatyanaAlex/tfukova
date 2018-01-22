@@ -2,10 +2,7 @@ package ru.job4j.modeluser;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -20,7 +17,7 @@ public class SortedUserTest {
 
     /**
      * Method to check if the list of users is sorted.
-     * @return map of users.
+     * @return set of users.
      */
     @Test
     public void whenGiveListOfUsersShouldReturnTreeSet() {
@@ -41,6 +38,43 @@ public class SortedUserTest {
         assertThat(listUsers.get(1), is(user3));
         assertThat(listUsers.get(2), is(user1));
 
+    }
+    /**
+     * Test method.
+     * @return list of users sorted by the names' length.
+     */
+    @Test
+    public void whenGiveListShouldSortByNameLength() {
+        SortedUser sortedUser = new SortedUser();
+        User user1 = new User("Ivan", 43);
+        User user2 = new User("Maxim", 25);
+        User user3 = new User("Alexander", 33);
+
+        List<User> resultUsers = new ArrayList<>();
+        resultUsers = sortedUser.sortNameLength(Arrays.asList(user1, user2, user3));
+
+        assertThat(resultUsers.get(0), is(user1));
+        assertThat(resultUsers.get(1), is(user2));
+        assertThat(resultUsers.get(2), is(user3));
+
+    }
+    /**
+     * Test method.
+     * @return list of users sorted by the names' length and age.
+     */
+    @Test
+    public void whenGiveListShouldSortByNameLengthAndAge() {
+        SortedUser sortedUser = new SortedUser();
+        User user1 = new User("Anton", 43);
+        User user2 = new User("Maxim", 25);
+        User user3 = new User("Alexander", 33);
+
+        List<User> resultUsers = new ArrayList<>();
+        resultUsers = sortedUser.sortByAllFields(Arrays.asList(user1, user2, user3));
+
+        assertThat(resultUsers.get(0), is(user2));
+        assertThat(resultUsers.get(1), is(user1));
+        assertThat(resultUsers.get(2), is(user3));
 
     }
 
