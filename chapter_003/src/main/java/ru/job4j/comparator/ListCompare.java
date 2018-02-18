@@ -29,19 +29,20 @@ public class ListCompare implements Comparator<List<Integer>> {
             maxLenght = right.size();
         }
 
+        int result = 0;
         for (int i = 0; i < maxLenght; i++) {
             if (left.get(i).compareTo(right.get(i)) == 0) {
                 continue;
             } else {
-                return left.get(i).compareTo(right.get(i));
+                result = left.get(i).compareTo(right.get(i));
             }
         }
         int diff = left.size() - right.size();
-        if (diff < 0) {
-            return -1;
-        } else if (diff > 0) {
-            return 1;
+        if (diff < 0 && result == 0) {
+            result = -1;
+        } else if (diff > 0 && result == 0) {
+            result = 1;
         }
-        return 0;
+        return result;
     }
 }
