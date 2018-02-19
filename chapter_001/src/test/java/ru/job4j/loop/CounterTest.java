@@ -4,11 +4,11 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class CounterTest{
+public class CounterTest {
     @Test
-    public void WhenNumberEvenThenSum (){
+    public void whenNumberEvenThenSum() {
         Counter count = new Counter();
-        int result = count.add (0,10);
+        int result = count.add(0, 10);
         assertThat(result, is(30));
 
     }

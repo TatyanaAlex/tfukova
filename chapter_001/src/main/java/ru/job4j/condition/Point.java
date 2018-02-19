@@ -1,15 +1,15 @@
 package ru.job4j.condition;
 
-public class Point{
+public class Point {
     private int x;
     private int y;
 
-    public Point(int x, int y){
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX(){
+    public int getX() {
         return this.x;
     }
 
@@ -17,8 +17,8 @@ public class Point{
         return this.y;
     }
 
-    public boolean is(int a, int b){
-        return y == a*x +b;
+    public boolean is(int a, int b) {
+        return y == a * x + b;
 
     }
 }

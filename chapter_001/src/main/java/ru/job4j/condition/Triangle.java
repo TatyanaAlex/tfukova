@@ -1,14 +1,14 @@
 package ru.job4j.condition;
 
-public class Triangle{
+public class Triangle {
     private Point a;
     private Point b;
     private Point c;
 
   public Triangle(Point a, Point b, Point c) {
-      this.a=a;
-      this.b=b;
-      this.c=c;
+      this.a = a;
+      this.b = b;
+      this.c = c;
   }
     /**
      * Метод должен вычислять расстояние между точками left и right.
@@ -25,7 +25,7 @@ public class Triangle{
      * @return расстояние между точками left и right.
      */
     public double distance(Point left, Point right) {
-        return Math.sqrt(Math.pow(right.getX() - left.getX(),2) + Math.pow(right.getY() - left.getY(),2));
+        return Math.sqrt(Math.pow(right.getX() - left.getX(), 2) + Math.pow(right.getY() - left.getY(), 2));
     }
     /**
      * Метод вычисления периметра по длинам сторон.
@@ -61,9 +61,10 @@ public class Triangle{
         double bc = this.distance(this.b, this.c);
         double p = this.period(ab, ac, bc);
         if (this.exist(ab, ac, bc)) {
-            return Math.sqrt(p *(p - ab) * (p - ac) * (p - bc));
-        }else {return rsl;}
-
+            return Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
+        } else {
+            return rsl;
+        }
     }
     /**
      * Метод проверяет можно ли построить треугольник с такими длинами сторон.
@@ -76,7 +77,7 @@ public class Triangle{
      * @return
      */
     private boolean exist(double ab, double ac, double bc) {
-       return (ab < (ac+bc) && ac < (ab+bc) && bc < (ab+ac));
+       return (ab < (ac + bc) && ac < (ab + bc) && bc < (ab + ac));
 
     }
 }
