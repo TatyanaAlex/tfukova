@@ -1,4 +1,4 @@
-package ru.job4j.strategyPattern;
+package ru.job4j.strategypattern;
 
 public class Triangle implements Shape {
 

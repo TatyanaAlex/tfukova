@@ -1,7 +1,7 @@
 package ru.job4j.chess;
 
 public class FigureNotFoundException extends RuntimeException {
-    public FigureNotFoundException(String fnfe){
+    public FigureNotFoundException(String fnfe) {
         super(fnfe);
     }
 }

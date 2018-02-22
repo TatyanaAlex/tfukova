@@ -15,7 +15,7 @@ public class Cell {
      * @param x **horizontal cell's coordinate**
      * @param y ** vertical cell's coordinate**
      */
-    public Cell (int x, int y){
+    public Cell(int x, int y) {
         this.x = x;
         this.y = y;
     }

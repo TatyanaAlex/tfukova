@@ -24,13 +24,13 @@ public class Bishop extends Figure {
      */
     @Override
     Cell[] way(Cell dist) {
-        if( Math.abs(position.x-dist.x) == Math.abs(position.y-dist.y) ){
-            if(dist.x < position.x && dist.y < position.y){
+        if (Math.abs(position.x - dist.x) == Math.abs(position.y - dist.y)) {
+            if (dist.x < position.x && dist.y < position.y) {
                 Cell[] path = new Cell[position.x - dist.x + 1];
                 int indexOfArray = path.length - 1;
                 int currentPositionX = position.x - 1;
                 int currentPositionY = position.y - 1;
-                for (int i = position.x; i >= dist.x ; i--) {
+                for (int i = position.x; i >= dist.x; i--) {
                     path[indexOfArray] = new Cell(currentPositionX, currentPositionY);
                     currentPositionX--;
                     currentPositionY--;
@@ -38,12 +38,12 @@ public class Bishop extends Figure {
                 }
                 return path;
             }
-            if(dist.x > position.x && dist.y < position.y){
+            if (dist.x > position.x && dist.y < position.y) {
                 Cell[] path = new Cell[dist.x - position.x + 1];
                 int indexOfArray = path.length - 1;
                 int currentPositionX = position.x + 1;
                 int currentPositionY = position.y - 1;
-                for (int i = position.x; i <=dist.x ; i++) {
+                for (int i = position.x; i <= dist.x; i++) {
                     path[indexOfArray] = new Cell(currentPositionX, currentPositionY);
                     currentPositionX++;
                     currentPositionY--;
@@ -51,12 +51,12 @@ public class Bishop extends Figure {
                 }
                 return path;
             }
-            if(dist.x < position.x && dist.y > position.y){
+            if (dist.x < position.x && dist.y > position.y) {
                 Cell[] path = new Cell[position.x - dist.x + 1];
                 int indexOfArray = path.length - 1;
                 int currentPositionX = position.x - 1;
                 int currentPositionY = position.y + 1;
-                for (int i = position.x; i >= dist.x ; i--) {
+                for (int i = position.x; i >= dist.x; i--) {
                     path[indexOfArray] = new Cell(currentPositionX, currentPositionY);
                     currentPositionX--;
                     currentPositionY++;
@@ -64,12 +64,12 @@ public class Bishop extends Figure {
                 }
                 return path;
             }
-            if(dist.x > position.x && dist.y > position.y){
+            if (dist.x > position.x && dist.y > position.y) {
                 Cell[] path = new Cell[dist.x - position.x + 1];
                 int indexOfArray = path.length - 1;
                 int currentPositionX = position.x + 1;
                 int currentPositionY = position.y + 1;
-                for (int i = position.x; i <= dist.x ; i++) {
+                for (int i = position.x; i <= dist.x; i++) {
                     path[indexOfArray] = new Cell(currentPositionX, currentPositionY);
                     currentPositionX++;
                     currentPositionY++;
@@ -77,7 +77,7 @@ public class Bishop extends Figure {
                 }
                 return path;
             }
-        }else {
+        } else {
             throw new ImpossibleMoveException("Impossible move");
         }
        return path;

@@ -24,12 +24,12 @@ public class CalculateTest {
 public void whenTakeNameThenTreeEchoPlusName() {
   String input = "Tatyana Fukova";
  String expect = "Echo, echo, echo : Tatyana Fukova";
- //Создание нового объекта.
+ //РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ РѕР±СЉРµРєС‚Р°.
 Calculate calc = new Calculate();
 
-//Выполнение метода echo с параметром input и запись ее в переменную result.
+//Р’С‹РїРѕР»РЅРµРЅРёРµ РјРµС‚РѕРґР° echo СЃ РїР°СЂР°РјРµС‚СЂРѕРј input Рё Р·Р°РїРёСЃСЊ РµРµ РІ РїРµСЂРµРјРµРЅРЅСѓСЋ result.
 String result = calc.echo(input);
-//сравнение двух значений result и expect
+//СЃСЂР°РІРЅРµРЅРёРµ РґРІСѓС… Р·РЅР°С‡РµРЅРёР№ result Рё expect
 assertThat(result, is(expect));
 }
 

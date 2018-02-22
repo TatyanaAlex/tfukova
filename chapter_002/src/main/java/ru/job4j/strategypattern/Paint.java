@@ -1,6 +1,6 @@
-package ru.job4j.strategyPattern;
+package ru.job4j.strategypattern;
 
-public class Paint{
+public class Paint {
 
     private String picture = "";
 
@@ -12,7 +12,7 @@ public class Paint{
         this.picture = picture;
     }
 
-    public void draw(Shape shape){
+    public void draw(Shape shape) {
         System.out.println(shape.pic());
         setPicture(shape.pic());
     }

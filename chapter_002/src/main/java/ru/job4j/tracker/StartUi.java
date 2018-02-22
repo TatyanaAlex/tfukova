@@ -51,11 +51,10 @@ public class StartUi {
         MenuTracker menu = new MenuTracker(this.input, tracker);
         menu.fillActions();
 
-        do{
+        do {
             menu.show();
             menu.select(input.ask("Select: ", ranges));
-
-        }while(!"yes".equals(this.input.ask("Exit (yes/no)? ")));
+        } while (!"yes".equals(input.ask("Exit (yes/no)? ")));
     }
 
 }

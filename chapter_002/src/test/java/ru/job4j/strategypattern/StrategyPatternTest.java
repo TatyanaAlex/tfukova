@@ -1,4 +1,4 @@
-package ru.job4j.strategyPattern;
+package ru.job4j.strategypattern;
 
 import org.junit.Test;
 
@@ -11,14 +11,14 @@ public class StrategyPatternTest {
     public void whenPicTriangleThenDrawTriangle() {
         Paint paint = new Paint();
         paint.draw(new Triangle());
-        String exampleTriangle = "  *  \n"+ " *** \n"+ "*****";
+        String exampleTriangle = "  *  \n" + " *** \n" + "*****";
         assertThat(paint.getPicture(), is(exampleTriangle));
     }
     @Test
     public void whenPicSquareThenDrawSquare() {
         Paint paint = new Paint();
         paint.draw(new Square());
-        String exampleSquare = "* * * *\n"+ "* * * *\n"+ "* * * *\n"+ "* * * *";
+        String exampleSquare = "* * * *\n" + "* * * *\n" + "* * * *\n" + "* * * *";
         assertThat(paint.getPicture(), is(exampleSquare));
     }
 }

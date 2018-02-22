@@ -14,5 +14,5 @@ public interface Input {
      */
     String ask(String question);
 
-    int ask (String question, int[] range);// перезагружаем метод
+    int ask(String question, int[] range); // перезагружаем метод
 }
