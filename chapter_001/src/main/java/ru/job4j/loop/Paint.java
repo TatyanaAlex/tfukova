@@ -19,7 +19,7 @@ public class Paint {
                 builder.append(" ");
                  }
                 }
-            builder.append("\n");
+            builder.append(System.getProperty("line.separator"));
             }
         builder.setLength(builder.length() - 2);
         return builder.toString();
