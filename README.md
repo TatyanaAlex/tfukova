@@ -1,6 +1,8 @@
-# tfukova
-http://job4j.ru/
-Цели курса:получение навыков разработки на языке Java; применение на практике всех полученных знаний и навыков; трудоустройство.
-Дата достижения целей -  02.2018
 [![Build Status](https://travis-ci.org/TatyanaAlex/tfukova.svg?branch=master)](https://travis-ci.org/TatyanaAlex/tfukova)
 [![codecov](https://codecov.io/gh/TatyanaAlex/tfukova/branch/master/graph/badge.svg)](https://codecov.io/gh/TatyanaAlex/tfukova)
+
+# tfukova
+http://job4j.ru/
+
+Цели курса:получение навыков разработки на языке Java; применение на практике всех полученных знаний и навыков; трудоустройство.
+Дата достижения целей -  03.2018
