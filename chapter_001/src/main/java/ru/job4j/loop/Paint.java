@@ -25,5 +25,4 @@ public class Paint {
         return builder.toString();
         }
 
-
     }
