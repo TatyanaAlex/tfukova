@@ -35,8 +35,9 @@ public class IteratorForArray implements Iterator {
      */
     @Override
     public Object next() {
+        Object objToReturn;
            if (this.i == this.values.length && this.j == 0) {
-               return null;
+               objToReturn = null;
            } else {
                int nextElement = this.values[i][j];
                if (this.j == this.values[i].length - 1) {
@@ -45,7 +46,8 @@ public class IteratorForArray implements Iterator {
                } else {
                    this.j++;
                }
-               return nextElement;
+               objToReturn = nextElement;
            }
+           return objToReturn;
     }
 }
