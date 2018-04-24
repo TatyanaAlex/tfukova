@@ -42,7 +42,7 @@ public class EvenIterator implements Iterator {
      */
     @Override
     public Object next() {
-        for (int i = this.position; i < numbers.length; i++) {
+       for (int i = this.position; i < numbers.length; i++) {
             if (this.numbers[i] % 2 == 0) {
                 this.position = i + 1;
                 return this.numbers[i];
