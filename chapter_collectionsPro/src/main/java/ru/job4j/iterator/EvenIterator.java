@@ -44,7 +44,7 @@ public class EvenIterator implements Iterator {
     public Object next() {
             if (hasNext()) {
                 int tempPosition = this.position;
-                this.position ++;
+                this.position++;
                 return this.numbers[tempPosition];
             }
         throw new NoSuchElementException();
