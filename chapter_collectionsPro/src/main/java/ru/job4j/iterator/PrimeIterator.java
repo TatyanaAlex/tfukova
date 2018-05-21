@@ -61,13 +61,10 @@ public class PrimeIterator implements Iterator {
      */
     @Override
     public Object next() {
-        if (hasNext()) {
-            int tempPosition = this.position;
-            this.position++;
-            return this.numbers[tempPosition];
+        if (!hasNext()) {
+            throw new NoSuchElementException();
         }
-        throw new NoSuchElementException();
+        return numbers[position++];
     }
-
 }
 
