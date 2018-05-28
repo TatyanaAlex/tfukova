@@ -8,9 +8,10 @@ import java.util.NoSuchElementException;
  */
 public class SimpleArray<T> implements Iterator<T> {
 
-    Object[] objects;
-    int index = 0;
-    int iteratorIndex = 0;
+    private Object[] objects;
+    private int index = 0;
+
+    private int iteratorIndex = 0;
 
     /**
      * Constructor.
