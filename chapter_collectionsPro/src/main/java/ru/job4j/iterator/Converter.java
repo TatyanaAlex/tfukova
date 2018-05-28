@@ -8,8 +8,8 @@ import java.util.NoSuchElementException;
  */
 public class Converter {
 
-    Iterator<Integer> currentIterator = null;
-    Iterator<Iterator<Integer>> generalIterator = null;
+    Iterator<Integer> currentIt = null;
+    Iterator<Iterator<Integer>> generalIt = null;
 
 
     /**
@@ -19,13 +19,13 @@ public class Converter {
      * @return iterator of numbers.
      */
     Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
-        this.generalIterator = it;
+        this.generalIt = it;
         return new Iterator<Integer>() {
 
             @Override
             public boolean hasNext() {
                 chooseCurrentIterator();
-                return currentIterator.hasNext();
+                return currentIt.hasNext();
             }
 
             @Override
@@ -33,7 +33,7 @@ public class Converter {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return currentIterator.next();
+                return currentIt.next();
             }
         };
     }
@@ -42,9 +42,9 @@ public class Converter {
      * Method to choose the current iterator.
      */
     private void chooseCurrentIterator() {
-        if (currentIterator == null || !currentIterator.hasNext()) {
-            if (generalIterator.hasNext()) {
-                currentIterator = generalIterator.next();
+        if (currentIt == null || !currentIt.hasNext()) {
+            if (generalIt.hasNext()) {
+                currentIt = generalIt.next();
             }
         }
     }
