@@ -5,8 +5,9 @@ package ru.job4j.generics;
  */
 public abstract class AbstractStore<T extends Base> {
 
-    public SimpleArray<T> store;
-    public int size;
+    private SimpleArray<T> store;
+    private int size;
+
 
     /**
      * Method to add new element.
@@ -53,4 +54,20 @@ public abstract class AbstractStore<T extends Base> {
         }
         return null;
     }
+    public SimpleArray<T> getStore() {
+        return store;
+    }
+
+    public void setStore(SimpleArray<T> store) {
+        this.store = store;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
 }

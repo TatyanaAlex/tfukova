@@ -10,7 +10,7 @@ public class Role extends Base {
      *
      * @param id - identificator.
      */
-    protected Role(String id) {
+    public Role(String id) {
         super(id);
     }
 }
