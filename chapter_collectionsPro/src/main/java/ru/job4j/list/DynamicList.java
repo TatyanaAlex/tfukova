@@ -13,8 +13,8 @@ public class DynamicList<E> implements Iterator<E> {
     Object[] container;
     private int index = 0;
     private int cursor = 0;
-    protected transient int modCount = 0;
-    int expectedModCount = modCount;
+    private int modCount = 0;
+    private int expectedModCount = modCount;
 
     /**
      * Constructor.
