@@ -8,13 +8,13 @@ import java.util.NoSuchElementException;
 /**
  * Class DynamicList.
  */
-public class DynamicList<E> implements Iterator<E> {
+public class DynamicList<E> implements Iterable<E> {
 
     Object[] container;
     private int index = 0;
-    private int cursor = 0;
+
     private int modCount = 0;
-    private int expectedModCount = modCount;
+
 
     /**
      * Constructor.
@@ -44,25 +44,35 @@ public class DynamicList<E> implements Iterator<E> {
 
     }
 
+    public Iterator<E> iterator() {
 
-    @Override
-    public boolean hasNext() {
-        return !(this.cursor == this.container.length);
+        return new Iterator<E>() {
+
+            private int cursor = 0;
+            private int expectedModCount = modCount;
+
+            @Override
+            public boolean hasNext() {
+                return !(this.cursor == container.length);
+            }
+
+            @Override
+            public E next() {
+                if (modCount != expectedModCount) {
+                    throw new ConcurrentModificationException();
+                }
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                cursor++;
+
+
+                return (E) container[cursor - 1];
+            }
+        };
+
     }
 
-    @Override
-    public E next() {
-        if (modCount != expectedModCount) {
-            throw new ConcurrentModificationException();
-        }
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        cursor++;
-
-
-        return (E) container[cursor - 1];
-    }
 
 
 }
