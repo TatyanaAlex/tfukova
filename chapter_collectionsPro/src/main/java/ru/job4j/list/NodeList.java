@@ -8,13 +8,13 @@ import java.util.NoSuchElementException;
 /**
  * Class NodeList.
  */
-public class NodeList<E> implements Iterator<E> {
+public class NodeList<E> implements Iterable<E> {
 
     private Node<E> node;
     private int size = 0;
-    private int cursor = 0;
+
     private int modCount = 0;
-    private int expectedModCount = modCount;
+
 
     /**
      * Method to add new element at the beginning.
@@ -45,24 +45,40 @@ public class NodeList<E> implements Iterator<E> {
 
     }
 
+    public Iterator<E> iterator() {
 
-    @Override
-    public boolean hasNext() {
-        return !(node.next == null);
-    }
+        return new Iterator<E>() {
 
-    @Override
-    public E next() {
-        if (modCount != expectedModCount) {
-            throw new ConcurrentModificationException();
-        }
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        this.cursor++;
+            private int cursor = 0;
+            private int expectedModCount = modCount;
+            private Node<E> nextNode;
+
+            @Override
+            public boolean hasNext() {
+                return !(node.next == null);
+            }
+
+            @Override
+            public E next() {
+                if (modCount != expectedModCount) {
+                    throw new ConcurrentModificationException();
+                }
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                if (cursor == 0) {
+                    nextNode = node;
+                    cursor++;
+                } else {
+                    nextNode = node.next;
+                    cursor++;
+                }
+
+                return nextNode.data;
+            }
 
 
-        return (E) node.data;
+        };
     }
 
 
