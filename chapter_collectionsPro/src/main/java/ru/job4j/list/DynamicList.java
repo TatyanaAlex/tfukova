@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  */
 public class DynamicList<E> implements Iterable<E> {
 
-    Object[] container;
+    private Object[] container;
     private int index = 0;
 
     private int modCount = 0;
@@ -53,7 +53,7 @@ public class DynamicList<E> implements Iterable<E> {
 
             @Override
             public boolean hasNext() {
-                return !(this.cursor == container.length);
+                return (this.cursor < container.length);
             }
 
             @Override
@@ -72,7 +72,6 @@ public class DynamicList<E> implements Iterable<E> {
         };
 
     }
-
 
 
 }

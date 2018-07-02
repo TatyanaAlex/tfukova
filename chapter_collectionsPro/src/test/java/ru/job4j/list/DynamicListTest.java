@@ -2,7 +2,7 @@ package ru.job4j.list;
 
 import org.junit.Test;
 
-import java.util.ConcurrentModificationException;
+
 import java.util.Iterator;
 
 import static org.hamcrest.core.Is.is;
@@ -20,12 +20,12 @@ public class DynamicListTest {
     public void whenAddElementShouldAddToArray() {
 
         DynamicList<String> dynamicList = new DynamicList<String>(5);
-        dynamicList.container = new Object[1];
+
 
         dynamicList.add("first");
         dynamicList.add("second");
 
-        String result = (String) dynamicList.container[1];
+        String result = dynamicList.get(1);
 
         assertThat(result, is("second"));
     }
@@ -37,8 +37,6 @@ public class DynamicListTest {
     public void whenSetIndexOfElementShouldReturnElement() {
 
         DynamicList<String> dynamicList = new DynamicList<String>(3);
-
-        dynamicList.container = new Object[1];
 
         dynamicList.add("first");
         dynamicList.add("second");
@@ -55,7 +53,6 @@ public class DynamicListTest {
     public void whenNextShouldreturnNextElement() {
         DynamicList<String> dynamicList = new DynamicList<String>(3);
 
-        dynamicList.container = new Object[1];
 
         dynamicList.add("first");
         dynamicList.add("second");
