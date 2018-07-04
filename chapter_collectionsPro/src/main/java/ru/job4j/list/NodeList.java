@@ -33,6 +33,10 @@ public class NodeList<E> implements Iterable<E> {
      */
     public E get(int index) {
 
+        if (index >= this.size) {
+            throw new IndexOutOfBoundsException();
+        }
+
         Node<E> result = this.node;
 
         for (int i = 0; i < index; i++) {
@@ -55,7 +59,7 @@ public class NodeList<E> implements Iterable<E> {
 
             @Override
             public boolean hasNext() {
-                return !(node.next == null);
+                return (this.cursor < size);
             }
 
             @Override
