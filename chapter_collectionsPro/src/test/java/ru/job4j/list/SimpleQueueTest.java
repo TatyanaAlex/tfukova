@@ -19,10 +19,11 @@ public class SimpleQueueTest {
 
         simpleQueue.push("first");
         simpleQueue.push("second");
+        simpleQueue.push("third");
 
-        String result = simpleQueue.get(1);
+        String result = simpleQueue.get(2);
 
-        assertThat(result, is("second"));
+        assertThat(result, is("third"));
     }
 
     /**
@@ -35,13 +36,14 @@ public class SimpleQueueTest {
 
         simpleQueue.push("first");
         simpleQueue.push("second");
+        simpleQueue.push("third");
 
 
         simpleQueue.poll();
         String result = simpleQueue.get(0);
 
         assertThat(result, is("second"));
-        assertThat(1, is(simpleQueue.getSize()));
+        assertThat(2, is(simpleQueue.getSize()));
 
 
     }

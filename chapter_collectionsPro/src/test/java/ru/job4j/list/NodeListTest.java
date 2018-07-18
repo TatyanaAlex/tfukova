@@ -26,6 +26,7 @@ public class NodeListTest {
 
         nodeList.add("first");
         nodeList.add("second");
+        nodeList.add("third");
 
 
         String result = nodeList.get(1);

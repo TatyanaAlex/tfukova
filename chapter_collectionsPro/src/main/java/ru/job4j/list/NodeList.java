@@ -25,18 +25,19 @@ public class NodeList<E> implements Iterable<E> {
      */
     public void add(E data) {
         Node<E> newNode = new Node<>(data);
-        //newLink.next = this.node;
         newNode.next = null;
-        if (last != null) {
-            last.next = newNode;
-        } else {
-            last = newNode;
-        }
-
-        this.size++;
         if (head == null) {
             head = newNode;
         }
+        if (last == null) {
+            last = newNode;
+        } else {
+            last.next = newNode;
+            last = newNode;
+        }
+
+
+        this.size++;
 
         modCount++;
     }
