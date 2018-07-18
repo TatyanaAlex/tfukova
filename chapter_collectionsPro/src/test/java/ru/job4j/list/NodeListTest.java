@@ -6,8 +6,10 @@ import org.junit.Test;
 
 import java.util.Iterator;
 
+import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+
 
 /**
  * Test Class.
@@ -25,7 +27,8 @@ public class NodeListTest {
         nodeList.add("first");
         nodeList.add("second");
 
-        String result = nodeList.get(0);
+
+        String result = nodeList.get(1);
 
         assertThat(result, is("second"));
     }
@@ -40,7 +43,7 @@ public class NodeListTest {
 
         nodeList.add("first");
         nodeList.add("second");
-        String result = nodeList.get(1);
+        String result = nodeList.get(0);
 
         assertThat(result, is("first"));
     }
@@ -57,9 +60,45 @@ public class NodeListTest {
 
         Iterator<String> iterator = nodeList.iterator();
         assertThat(iterator.hasNext(), is(true));
-        assertThat(iterator.next(), is("second"));
-        assertThat(iterator.hasNext(), is(true));
         assertThat(iterator.next(), is("first"));
+        assertThat(iterator.hasNext(), is(true));
+        assertThat(iterator.next(), is("second"));
+
+    }
+
+    /**
+     * Test Method.
+     */
+    @Test
+    public void shouldDeleteFirstElement() {
+        NodeList<String> nodeList = new NodeList<>();
+
+        nodeList.add("first");
+        nodeList.add("second");
+
+        nodeList.removeFirst();
+        String result = nodeList.get(0);
+
+        assertThat(result, is("second"));
+        assertThat(1, is(nodeList.getSize()));
+
+    }
+
+    /**
+     * Test Method.
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void shouldDeleteLastElement() {
+        NodeList<String> nodeList = new NodeList<>();
+
+        nodeList.add("first");
+        nodeList.add("second");
+
+        nodeList.removeLast();
+        String result = nodeList.get(1);
+
+        assertThat(result, is(nullValue()));
+        assertThat(1, is(nodeList.getSize()));
 
     }
 

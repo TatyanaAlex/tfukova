@@ -10,7 +10,11 @@ import java.util.NoSuchElementException;
  */
 public class NodeList<E> implements Iterable<E> {
 
-    private Node<E> node;
+
+    private Node<E> head;
+    private Node<E> last;
+
+
     private int size = 0;
 
     private int modCount = 0;
@@ -20,10 +24,19 @@ public class NodeList<E> implements Iterable<E> {
      * Method to add new element at the beginning.
      */
     public void add(E data) {
-        Node<E> newLink = new Node<>(data);
-        newLink.next = this.node;
-        this.node = newLink;
+        Node<E> newNode = new Node<>(data);
+        //newLink.next = this.node;
+        newNode.next = null;
+        if (last != null) {
+            last.next = newNode;
+        } else {
+            last = newNode;
+        }
+
         this.size++;
+        if (head == null) {
+            head = newNode;
+        }
 
         modCount++;
     }
@@ -37,7 +50,7 @@ public class NodeList<E> implements Iterable<E> {
             throw new IndexOutOfBoundsException();
         }
 
-        Node<E> result = this.node;
+        Node<E> result = this.head;
 
         for (int i = 0; i < index; i++) {
 
@@ -71,10 +84,10 @@ public class NodeList<E> implements Iterable<E> {
                     throw new NoSuchElementException();
                 }
                 if (cursor == 0) {
-                    nextNode = node;
+                    nextNode = head;
                     cursor++;
                 } else {
-                    nextNode = node.next;
+                    nextNode = nextNode.next;
                     cursor++;
                 }
 
@@ -85,11 +98,51 @@ public class NodeList<E> implements Iterable<E> {
         };
     }
 
+    /**
+     * Method to remove the first element.
+     */
+    public E removeFirst() {
+        if (head == null) {
+            return (E) head;
+        }
+        Node<E> temp = head;
+        head = head.next;
+        temp.next = null;
+        size--;
+        modCount++;
+
+        return (E) temp;
+
+    }
+
+    /**
+     * Method to remove the last element.
+     */
+    public E removeLast() {
+        Node<E> last = head;
+        Node<E> previousToLast = null;
+
+        while (last.next != null) {
+            previousToLast = last;
+            last = last.next;
+        }
+        previousToLast.next = null;
+
+        size--;
+        modCount++;
+
+        return (E) last;
+
+    }
+
+    public int getSize() {
+        return size;
+    }
 
     /**
      * Class to store the data.
      */
-    private static class Node<E> {
+    public static class Node<E> {
 
         E data;
         Node<E> next;
