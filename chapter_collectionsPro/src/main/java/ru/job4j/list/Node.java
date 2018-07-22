@@ -23,21 +23,20 @@ public class Node<T> {
     boolean hasCycle(Node first) {
         Node slow = first;
         Node fast = first;
+        boolean result = false;
 
-        if (first == null) {
-            return false;
-        }
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
 
             if (slow == fast) {
-                return true;
+                result = true;
+                break;
             }
 
         }
 
-        return false;
+        return result;
 
     }
 }
