@@ -2,6 +2,7 @@ package ru.job4j.map;
 
 import java.util.Calendar;
 
+
 /**
  * Class  User.
  *
@@ -26,4 +27,7 @@ public class User {
         this.children = children;
         this.birthday = birthday;
     }
+
+
+
 }
