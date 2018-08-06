@@ -29,6 +29,7 @@ public class User {
         this.birthday = birthday;
     }
 
+/*
 
     @Override
     public int hashCode() {
@@ -39,4 +40,28 @@ public class User {
 
         return result;
     }
+*/
+
+    @Override
+    public boolean equals(Object obj) {
+
+        boolean isEquals = false;
+
+        if (this == obj) {
+            isEquals = true;
+        }
+
+
+        if (!isEquals && obj != null && this.getClass() == obj.getClass()) {
+            User user = (User) obj;
+
+            if (this.name.equals(user.name) && this.children == user.children && this.birthday.equals(user.birthday)) {
+                isEquals = true;
+            }
+        }
+
+        return isEquals;
+
+    }
+
 }
