@@ -18,8 +18,11 @@ public class UserMapTest {
     @Test
     public void whenAddShouldShowTheMap() {
 
-        User first = new User("Maxim", 1, Calendar.getInstance());
-        User second = new User("Maxim", 1, Calendar.getInstance());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(1991, 5, 7, 0, 0, 0);
+
+        User first = new User("Maxim", 1, calendar);
+        User second = new User("Maxim", 1, calendar);
 
         UserMap userMap = new UserMap();
 
