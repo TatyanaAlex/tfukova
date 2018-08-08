@@ -29,9 +29,9 @@ public class NodeListTest {
         nodeList.add("third");
 
 
-        String result = nodeList.get(1);
+        String result = nodeList.get(2);
 
-        assertThat(result, is("second"));
+        assertThat(result, is("third"));
     }
 
     /**

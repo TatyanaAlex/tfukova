@@ -29,7 +29,6 @@ public class User {
         this.birthday = birthday;
     }
 
-/*
 
     @Override
     public int hashCode() {
@@ -40,7 +39,6 @@ public class User {
 
         return result;
     }
-*/
 
     @Override
     public boolean equals(Object obj) {
@@ -63,5 +61,7 @@ public class User {
         return isEquals;
 
     }
+
+
 
 }

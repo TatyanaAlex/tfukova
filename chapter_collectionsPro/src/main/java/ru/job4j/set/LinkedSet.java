@@ -1,7 +1,9 @@
 package ru.job4j.set;
 
+import ru.job4j.list.NodeList;
+
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+
 
 /**
  * Class  LinkedSet.
@@ -11,31 +13,16 @@ import java.util.NoSuchElementException;
  */
 public class LinkedSet<E> implements Iterable<E> {
 
-    private Node<E> head;
-    private Node<E> last;
 
-    private int size = 0;
+    NodeList<E> nodeList = new NodeList<>();
 
 
     /**
      * Method to add new element.
      */
     public void add(E data) {
-        Node<E> newNode = new Node<>(data);
-        if (duplicate(data)) {
-
-            newNode.next = null;
-            if (head == null) {
-                head = newNode;
-            }
-            if (last == null) {
-                last = newNode;
-            } else {
-                last.next = newNode;
-                last = newNode;
-            }
-
-            this.size++;
+        if (!this.duplicate(data)) {
+            nodeList.add(data);
         }
 
     }
@@ -44,12 +31,12 @@ public class LinkedSet<E> implements Iterable<E> {
      * Method to check the duplicated elements.
      */
     private boolean duplicate(E value) {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < nodeList.getSize(); i++) {
             if (value.equals(get(i))) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
 
@@ -58,68 +45,14 @@ public class LinkedSet<E> implements Iterable<E> {
      */
     public E get(int index) {
 
-        if (index >= this.size) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        Node<E> result = this.head;
-
-        for (int i = 0; i < index; i++) {
-
-            result = result.next;
-
-        }
-
-        return result.data;
+        return nodeList.get(index);
 
     }
 
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
-
-            private int cursor = 0;
-
-            private Node<E> nextNode;
-
-            @Override
-            public boolean hasNext() {
-                return (this.cursor < size);
-            }
-
-            @Override
-            public E next() {
-
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-                if (cursor == 0) {
-                    nextNode = head;
-                    cursor++;
-                } else {
-                    nextNode = nextNode.next;
-                    cursor++;
-                }
-
-                return nextNode.data;
-            }
-
-
-        };
+        return nodeList.iterator();
     }
 
-    /**
-     * Class to store the data.
-     */
-    private static class Node<E> {
 
-        E data;
-        Node<E> next;
-
-        Node(E data) {
-
-            this.data = data;
-        }
-
-    }
 }
