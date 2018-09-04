@@ -1,5 +1,6 @@
 package ru.job4j.map;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -31,6 +32,7 @@ public class MyHashMap<K, V> implements Iterable<V> {
 
     private HashMapArray[] mapArray = new HashMapArray[16];
     private int count = 0;
+    private int modCount = 0;
 
 
     /**
@@ -40,7 +42,7 @@ public class MyHashMap<K, V> implements Iterable<V> {
      * @param value value.
      * @return result.
      */
-    boolean insert(K key, V value) {
+    public boolean insert(K key, V value) {
 
         boolean result = false;
         if (key != null) {
@@ -50,17 +52,23 @@ public class MyHashMap<K, V> implements Iterable<V> {
                 this.increaseSize();
             }
 
-            int index = key.hashCode() & (this.mapArray.length - 1);
+            int index = getIndex(key);
 
             if (this.mapArray[index] == null) {
                 this.mapArray[index] = newArray;
                 count++;
+                modCount++;
                 result = true;
+
             }
         }
 
         return result;
 
+    }
+
+    public int getIndex(K key) {
+        return key.hashCode() & (this.mapArray.length - 1);
     }
 
     /**
@@ -85,9 +93,9 @@ public class MyHashMap<K, V> implements Iterable<V> {
      * @return value.
      */
     public V get(K key) {
-        int index = key.hashCode() & (this.mapArray.length - 1);
+        int index = getIndex(key);
         if (this.mapArray[index] == null || !key.equals(this.mapArray[index].key)) {
-            throw new NoSuchElementException();
+            return null;
         }
         return (V) this.mapArray[index].value;
 
@@ -104,10 +112,11 @@ public class MyHashMap<K, V> implements Iterable<V> {
         boolean result = false;
 
         if (key != null) {
-            int index = key.hashCode() & (this.mapArray.length - 1);
+            int index = getIndex(key);
             if (key.equals(this.mapArray[index].key)) {
                 this.mapArray[index] = null;
                 this.count--;
+                modCount++;
                 result = true;
             }
 
@@ -126,6 +135,7 @@ public class MyHashMap<K, V> implements Iterable<V> {
 
             private int position = 0;
             private int iteratorCount = 0;
+            private int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {
@@ -140,6 +150,9 @@ public class MyHashMap<K, V> implements Iterable<V> {
             @Override
             public V next() {
                 V result = null;
+                if (modCount != expectedModCount) {
+                    throw new ConcurrentModificationException();
+                }
                 if (this.hasNext()) {
                     while (mapArray[this.position] == null) {
                         this.position++;
