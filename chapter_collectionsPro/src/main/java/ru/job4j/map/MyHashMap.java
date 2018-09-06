@@ -140,6 +140,9 @@ public class MyHashMap<K, V> implements Iterable<V> {
             @Override
             public boolean hasNext() {
                 boolean result = false;
+                if (modCount != expectedModCount) {
+                    throw new ConcurrentModificationException();
+                }
                 if (this.iteratorCount < count) {
                     result = true;
                 }
@@ -150,9 +153,7 @@ public class MyHashMap<K, V> implements Iterable<V> {
             @Override
             public V next() {
                 V result = null;
-                if (modCount != expectedModCount) {
-                    throw new ConcurrentModificationException();
-                }
+
                 if (this.hasNext()) {
                     while (mapArray[this.position] == null) {
                         this.position++;
