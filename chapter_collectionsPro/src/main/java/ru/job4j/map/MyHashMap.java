@@ -152,18 +152,17 @@ public class MyHashMap<K, V> implements Iterable<V> {
 
             @Override
             public V next() {
-                V result = null;
 
-                if (this.hasNext()) {
-                    while (mapArray[this.position] == null) {
-                        this.position++;
-                    }
-                    result = (V) mapArray[this.position];
-                    this.position++;
-                    this.iteratorCount++;
-                } else {
+                if (!this.hasNext()) {
                     throw new NoSuchElementException();
                 }
+                while (mapArray[this.position] == null) {
+                    this.position++;
+                }
+
+                V result = (V) mapArray[this.position];
+                this.position++;
+                this.iteratorCount++;
                 return result;
 
             }
