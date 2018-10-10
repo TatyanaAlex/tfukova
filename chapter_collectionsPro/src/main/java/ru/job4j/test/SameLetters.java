@@ -5,10 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class SameLetters {
-
-    private char[] word1 = "mama".toCharArray();
-    private char[] word2 = "amam".toCharArray();
-    private char[] word3 = "amama".toCharArray();
+    
 
     Map<Character, Integer> lettersInWord1 = new HashMap<Character, Integer>();
 
@@ -18,7 +15,7 @@ public class SameLetters {
      *
      * @return result.
      */
-    public boolean isSameLetters() {
+    public boolean isSameLetters(char[] word1, char[] word3) {
 
         lettersInWord1 = new TreeMap<>();
         for (char tempor : word1) {
@@ -37,7 +34,7 @@ public class SameLetters {
      *
      * @return result.
      */
-    public boolean isAnagramma() {
+    public boolean isAnagramma(char[] word1, char[] word2) {
 
         for (char temp : word1) {
             int count = 1;
