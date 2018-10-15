@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * @author Tatyana (mailto:tatyanafukova@gmail.com)
+ * @version $Id$
+ * @since 0.9
+ */
+
 public class SameLetters {
     
 
