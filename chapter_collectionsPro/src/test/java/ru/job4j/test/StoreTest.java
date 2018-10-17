@@ -19,6 +19,7 @@ import static org.junit.Assert.assertThat;
 public class StoreTest {
 
     Store store = new Store();
+    Info info = new Info();
     List<Store.User> oldUsers = new LinkedList<>();
     List<Store.User> newUsers = new LinkedList<>();
 
@@ -40,7 +41,7 @@ public class StoreTest {
         newUsers.add(new Store.User(2, "Victoria"));
         newUsers.add(new Store.User(3, "Max"));
 
-        HashMap result = store.isDiffer(oldUsers, newUsers);
+        HashMap result = info.isDiffer(oldUsers, newUsers);
         assertThat(result.get("new added Users: "), is(0));
         assertThat(result.get("deleted Users: "), is(0));
         assertThat(result.get("changed Users: "), is(0));
@@ -55,7 +56,7 @@ public class StoreTest {
         newUsers.add(new Store.User(3, "Eva"));
         newUsers.add(new Store.User(4, "Anton"));
         newUsers.add(new Store.User(5, "Anna"));
-        HashMap result = store.isDiffer(oldUsers, newUsers);
+        HashMap result = info.isDiffer(oldUsers, newUsers);
         assertThat(result.get("new added Users: "), is(2));
         assertThat(result.get("deleted Users: "), is(1));
         assertThat(result.get("changed Users: "), is(2));
