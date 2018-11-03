@@ -21,7 +21,7 @@ public class RectangleMove implements Runnable {
     @Override
     public void run() {
         boolean moveStraight = true;
-        while (true) {
+        while (!Thread.currentThread().isInterrupted()) {
             if (this.rect.getX() == 295) {
                 moveStraight = false;
             }
@@ -38,6 +38,7 @@ public class RectangleMove implements Runnable {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
     }
