@@ -9,7 +9,7 @@ public class ThreadsProblem {
 
         Counter counter = new Counter();
 
-        for(int i=0; i < 200; i++) {
+        for (int i = 0; i < 200; i++) {
             CounterInThread ct = new CounterInThread(counter);
             ct.start();
 
@@ -22,7 +22,6 @@ public class ThreadsProblem {
 
         System.out.println("Counter: " + counter.getCounter());
     }
-
 
 
 }
@@ -57,7 +56,7 @@ class CounterInThread extends Thread {
 
     @Override
     public void run() {
-        for(int i=0; i<1000; i++) {
+        for (int i = 0; i < 1000; i++) {
             counter.increseCounter();
         }
     }
