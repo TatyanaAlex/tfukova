@@ -12,7 +12,7 @@ import java.util.Map;
 @ThreadSafe
 public class UserStorage {
 
-    private Map<Integer, User> userStorage = new HashMap<Integer, User>();
+    private final Map<Integer, User> userStorage = new HashMap<Integer, User>();
 
 
     /**
