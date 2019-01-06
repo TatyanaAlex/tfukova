@@ -19,6 +19,7 @@
         <module>chapter_003</module>
         <module>chapter_collectionsPro</module>
         <module>multithreading</module>
+        <module>input_output</module>
 
 
     </modules>

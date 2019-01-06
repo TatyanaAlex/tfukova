@@ -14,7 +14,7 @@ import net.jcip.annotations.ThreadSafe;
 public class ThreadSafeDynamicList<E> {
 
 
-    DynamicList<E> dl = new DynamicList<E>(5);
+    private DynamicList<E> dl = new DynamicList<E>(5);
 
     /**
      * Method to add new element.
