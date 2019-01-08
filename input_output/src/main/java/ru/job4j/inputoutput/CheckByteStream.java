@@ -18,6 +18,7 @@ public class CheckByteStream {
         Scanner scanner = new Scanner(in);
 
         int data = scanner.nextInt();
+        scanner.close();
         if (data % 2 == 0) {
             result = true;
         }
