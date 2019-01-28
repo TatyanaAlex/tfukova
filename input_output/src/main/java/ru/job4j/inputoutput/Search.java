@@ -16,30 +16,28 @@ public class Search {
      * @return list of files with a given extension.
      */
     public List<File> files(String parent, List<String> exts) {
-
         File parentPath = new File(parent);
-
-        List<File> resultList = new ArrayList<>();
-        Queue<File> filesTree = new PriorityQueue<>();
-
-        Collections.addAll(filesTree, parentPath.listFiles());
-        while (!filesTree.isEmpty()) {
-            File tempFile = filesTree.remove();
-            if (tempFile.isDirectory()) {
-                Collections.addAll(filesTree, tempFile.listFiles());
-            } else {
-                String extension = "";
-                int i = tempFile.getName().lastIndexOf('.');
-                if (i >= 0) {
-                    extension = tempFile.getName().substring(i + 1);
-                }
-                if (exts.contains(extension)) {
-                    resultList.add(tempFile);
-                }
-
+        List<File> result = new ArrayList<>();
+        Queue<File> tree = new PriorityQueue<>();
+        Collections.addAll(tree, parentPath.listFiles());
+        while (!tree.isEmpty()) {
+            File temp = tree.remove();
+            if (temp.isDirectory()) {
+                Collections.addAll(tree, temp.listFiles());
+            } else if (exts.contains(cutExt(temp))) {
+                result.add(temp);
             }
         }
-        return resultList;
+        return result;
 
+    }
+
+    public String cutExt(File temp) {
+        String extension = "";
+        int i = temp.getName().lastIndexOf('.');
+        if (i >= 0) {
+            extension = temp.getName().substring(i + 1);
+        }
+        return extension;
     }
 }
