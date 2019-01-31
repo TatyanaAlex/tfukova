@@ -4,7 +4,6 @@ package ru.job4j.inputoutput;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -15,21 +14,17 @@ import java.util.zip.ZipOutputStream;
 public class ZipProject {
 
     public static void main(String[] args) {
-        String srcDir = "/Users/tatyanafukova/projects";
-        String zip = "/Users/tatyanafukova/project.zip";
-        String ext = "xml";
-        List<String> exts = new ArrayList<>();
-        exts.add(ext);
-        new ZipProject().zip(exts, srcDir, zip);
-
+        Args arg = new Args(args);
+        new ZipProject().zip(arg.getExts(), arg.getSrcDir(), arg.getZip());
     }
+
 
     /**
      * method to zip files with an appropriate extension.
      *
      * @param srcDir source directory.
      * @param exts   files´ extension.
-     * @param zip zipped directory.
+     * @param zip    zipped directory.
      */
     public void zip(List<String> exts, String srcDir, String zip) {
         byte[] buffer = new byte[1024];
