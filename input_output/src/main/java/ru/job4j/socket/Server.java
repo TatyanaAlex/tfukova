@@ -7,16 +7,31 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Class Server.
+ *
+ * @author Tatyana (tatyanafukova@gmail.com)
+ * @version 1
+ * @since 18.02.19
+ */
 public class Server {
 
-    private final int port = 5000;
-    private Socket socket;
+    private final Socket socket;
 
+    /**
+     * Constructor.
+     */
+    public Server(Socket socket) {
+        this.socket = socket;
+    }
 
+    /**
+     * method to start the Server.
+     */
     public void startServer() throws IOException {
-        socket = new ServerSocket(port).accept();
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+        PrintWriter out = new PrintWriter(this.socket.getOutputStream(), true);
+        BufferedReader in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
         String ask = null;
         do {
             System.out.println("wait command ...");
@@ -27,6 +42,12 @@ public class Server {
                 out.println();
             }
         } while ("exit".equals(ask));
+    }
+
+    public static void main(String[] args) throws IOException {
+        try (final Socket socket = new ServerSocket(1111).accept()) {
+            new Server(socket);
+        }
     }
 
 }
