@@ -2,12 +2,12 @@ Hello, please enter your text
 hi
 Hello
 well
-well done
+Nice to meet you
 stop
 good
 continue
 thank you
 nice
-Nice to meet you
+well done
 finish
 Goodbye
