@@ -15,7 +15,8 @@ public class SearchFiles {
     public static void main(String[] args) {
         //args = new String[]{"-d", "/Users/tatyanafukova/Desktop", "-n", "*.txt", "-m", "-o", "log.txt"};
         Args arg = new Args(args);
-        new SearchFiles().searchFiles(arg);
+        SearchFiles sf = new SearchFiles();
+        sf.searchFiles(arg);
     }
 
     /**
@@ -37,9 +38,8 @@ public class SearchFiles {
                     result.add(temp);
                 }
             }
-            FileOutputStream fos;
             try {
-                fos = new FileOutputStream(arg.getResult());
+                FileOutputStream fos = new FileOutputStream(arg.getResult());
                 for (File resultFile : result) {
                     fos.write(resultFile.getAbsolutePath().getBytes());
                 }

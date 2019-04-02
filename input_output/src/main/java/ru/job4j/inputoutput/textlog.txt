@@ -1,13 +1,13 @@
 Hello, please enter your text 
 hi
-Hello
+well done
 well
-Nice to meet you
+well done
 stop
 good
 continue
-thank you
-nice
 well done
+nice
+How are you
 finish
 Goodbye
