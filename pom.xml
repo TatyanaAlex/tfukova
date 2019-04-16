@@ -20,6 +20,7 @@
         <module>chapter_collectionsPro</module>
         <module>multithreading</module>
         <module>input_output</module>
+        <module>sql_jdbc</module>
 
 
     </modules>
