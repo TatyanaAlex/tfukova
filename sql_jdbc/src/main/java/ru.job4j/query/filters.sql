@@ -8,7 +8,12 @@ select * from product as p where p.type_id = (select id from type where name = '
 
 --3. Написать запрос, который выводит все продукты, срок годности которых заканчивается в следующем месяце.
 
-select * from product where expired_date > '2019-05-01' and expired_date < '2019-05-31';
+SELECT p.name, p.price, p.expired_date
+FROM
+t_product AS p
+WHERE
+p.expired_date BETWEEN date_trunc('MONTH', CURRENT_TIMESTAMP + '1 month'::INTERVAL)
+AND date_trunc('MONTH', CURRENT_TIMESTAMP) + '2 MONTH'::INTERVAL - '1 DAY'::INTERVAL;
 
 --4. Написать запрос, который выводит самый дорогой продукт.
 
