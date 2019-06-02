@@ -26,7 +26,7 @@ public class TrackerTest {
      */
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         tracker.add(item);
         assertThat(tracker.findAll().get(0), is(item));
@@ -36,7 +36,7 @@ public class TrackerTest {
      */
     @Test
     public void whenUpdateNameThenReturnNewName() {
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         Item previous = new Item("test1", "testDescription", 123L);
         previous.setId("This is ID number 1");
         // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
@@ -55,7 +55,7 @@ public class TrackerTest {
      */
     @Test
     public void whenDeleteItemThenArrayWithoutIt() {
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         item.setId("This is ID number 1");
         tracker.add(item);
@@ -69,7 +69,7 @@ public class TrackerTest {
      */
     @Test
     public void whenFindByName() {
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         item.setId("This is ID number 1");
         tracker.add(item);

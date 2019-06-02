@@ -16,7 +16,7 @@ import java.util.Random;
  * @version $I$
  * @since 15.10
  */
-public class Tracker {
+public class Tracker implements ITracker {
 
     /**
      * @param items **list of items**.

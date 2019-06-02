@@ -8,7 +8,7 @@ public class StubInputTest {
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
-        Tracker tracker = new Tracker();   // создаём Tracker
+        ITracker tracker = new Tracker();   // создаём Tracker
         Input input = new StubInput(new String[]{"0", "test name", "desc", "5", "yes"}); //создаём StubInput с последовательностью действий
         new StartUi(input, tracker).init();  //   создаём StartUI и вызываем метод init()
         assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
@@ -16,7 +16,7 @@ public class StubInputTest {
 
     @Test
     public void whenShowAllThenTrackerFindsAll() {
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", 5));
         Input input = new StubInput(new String[]{"1", "yes"});
         new StartUi(input, tracker).init();
@@ -27,7 +27,7 @@ public class StubInputTest {
     @Test
     public void whenUpdateThenTrackerHasUpdatedValue() {
         // создаём Tracker
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         //Напрямую добавляем заявку
         Item item = tracker.add(new Item("test name", "desc", 5));
         //создаём StubInput с последовательностью действий
@@ -40,7 +40,7 @@ public class StubInputTest {
 
     @Test
     public void whenDeleteThenTrackerHasDeletedItem() {
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", 5));
         Input input = new StubInput(new String[]{"3", item.getId(), "desc", "test name", "5", "yes"});
         new StartUi(input, tracker).init();
@@ -49,7 +49,7 @@ public class StubInputTest {
     }
     @Test
     public void whenPutIdThemTrackerFindsById() {
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", 5));
         Input input = new StubInput(new String[]{"4", item.getId(), "yes"});
         new StartUi(input, tracker).init();
@@ -57,7 +57,7 @@ public class StubInputTest {
     }
     @Test
     public void whenPutNameThemTrackerFindsByName() {
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc", 5));
         Input input = new StubInput(new String[]{"5", item.getName(), "yes"});
         new StartUi(input, tracker).init();

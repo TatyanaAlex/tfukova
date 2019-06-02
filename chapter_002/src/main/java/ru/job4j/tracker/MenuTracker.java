@@ -12,7 +12,7 @@ class EditItem extends BaseAction {
         return super.key;
     }
 
-    public void execute(Input input, Tracker tracker) {
+    public void execute(Input input, ITracker tracker) {
         String id = input.ask("Please enter the Item's Id: ");
         String name = input.ask("Please enter the Item's name: ");
         String desc = input.ask("Please enter the Item's description: ");
@@ -28,10 +28,10 @@ class EditItem extends BaseAction {
 public class MenuTracker {
 
     private Input input;
-    private Tracker tracker;
+    private ITracker tracker;
     private ArrayList<BaseAction> actions = new ArrayList<>();
 
-    public MenuTracker(Input input, Tracker tracker) {
+    public MenuTracker(Input input, ITracker tracker) {
         this.input = input;
         this.tracker = tracker;
     }
@@ -69,7 +69,7 @@ public class MenuTracker {
         public int key() {
             return super.key;
         }
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
             String name = input.ask("Please enter the Item's name ");
             String desc = input.ask("Please enter the Item's description ");
             Long create = Long.valueOf(input.ask("Please enter the Item's creation time "));
@@ -87,7 +87,7 @@ public class MenuTracker {
         public int key() {
             return super.key;
         }
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
             String name = input.ask("Please enter the Item's name: ");
             for (Item item : tracker.findByName(name)) {
                 System.out.println(String.format("%s. %s", item.getId(), item.getName()));
@@ -104,7 +104,7 @@ public class MenuTracker {
             return super.key;
         }
 
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
             for (Item item : tracker.findAll()) {
                 System.out.println(String.format("%s. %s", item.getId(), item.getName()));
             }
@@ -121,7 +121,7 @@ public class MenuTracker {
             return super.key;
         }
 
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
             String id = input.ask("Please enter the Item's Id: ");
             String desc = input.ask("Please enter the Item's description: ");
             String name = input.ask("Please enter the Item's name: ");
@@ -141,7 +141,7 @@ public class MenuTracker {
         public int key() {
             return super.key;
         }
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
             String id = input.ask("Please enter the Item's Id: ");
             Item item = tracker.findById(id);
             System.out.println(String.format("%s. %s", item.getId(), item.getName()));
@@ -158,7 +158,7 @@ public class MenuTracker {
             return super.key;
         }
 
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, ITracker tracker) {
             System.out.println("Goodbye");
         }
 

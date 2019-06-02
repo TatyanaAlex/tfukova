@@ -17,14 +17,14 @@ public class StartUi {
 
     private int[] ranges = new int[] {0, 1, 2, 3, 4, 5, 6};
     private Input input;
-    private Tracker tracker;
+    private ITracker tracker;
 
     /**
      * конструктор.
      * @param input **initialization of the input **
      * @param tracker ** initialization of the tracker**
      */
-    public StartUi(Input input, Tracker tracker) {
+    public StartUi(Input input, ITracker tracker) {
 
         this.input = input;
         this.tracker = tracker;
@@ -38,7 +38,7 @@ public class StartUi {
      */
     public static void main(String[] args) {
         Input input = new ValidateInput();
-        Tracker tracker = new Tracker();
+        ITracker tracker = new Tracker();
         new StartUi(input, tracker).init();
     }
 
