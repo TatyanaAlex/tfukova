@@ -29,12 +29,13 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public Item add(Item item) {
         item.setId(String.valueOf(RANDOM.nextInt()));
-        try {
-            Statement stmt = connection.createStatement();
-            String sql = "INSERT INTO " + TABLE_ITEMS
-                    + "(name, description, created_on) "
-                    + "VALUES(" + item.getName() + "," + item.getDescription() + "," + item.getCreate() + ")";
-            stmt.execute(sql);
+        String sql = "INSERT INTO " + TABLE_ITEMS + "(id, name, description, created_on) VALUES(?, ?, ?, ?)";
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setInt(1, Integer.valueOf(item.getId()));
+            pst.setString(2, item.getName());
+            pst.setString(3, item.getDescription());
+            pst.setLong(4, item.getCreate());
+            pst.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,14 +49,13 @@ public class TrackerSQL implements ITracker, AutoCloseable {
      */
     @Override
     public void update(Item itemToUpdate) {
-        try {
-            Statement stmt = connection.createStatement();
-            String sql = "UPDATE " + TABLE_ITEMS
-                    + " SET name=" + itemToUpdate.getName()
-                    + ", description=" + itemToUpdate.getDescription()
-                    + ", created_on=" + itemToUpdate.getCreate()
-                    + "WHERE id=" + itemToUpdate.getId();
-            stmt.execute(sql);
+        String sql = "UPDATE " + TABLE_ITEMS + " SET name=?, description=?, created_on=? WHERE id=?";
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setString(1, itemToUpdate.getName());
+            pst.setString(2, itemToUpdate.getDescription());
+            pst.setLong(3, itemToUpdate.getCreate());
+            pst.setInt(4, Integer.valueOf(itemToUpdate.getId()));
+            pst.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,15 +68,13 @@ public class TrackerSQL implements ITracker, AutoCloseable {
      */
     @Override
     public void delete(Item itemToDelete) {
-        try {
-            Statement stmt = connection.createStatement();
-            String sql = "DELETE " + TABLE_ITEMS
-                    + "WHERE id=" + itemToDelete.getId();
-            stmt.execute(sql);
+        String sql = "DELETE " + TABLE_ITEMS + "WHERE id=?";
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setInt(1, Integer.valueOf(itemToDelete.getId()));
+            pst.execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -87,10 +85,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public List<Item> findAll() {
         List<Item> result = new ArrayList<>();
-        try {
-            Statement stmt = connection.createStatement();
+        try (Statement stmt = connection.createStatement()) {
             String sql = "SELECT * FROM " + TABLE_ITEMS;
-
             ResultSet resultSet = stmt.executeQuery(sql);
             result = parseItem(resultSet);
         } catch (SQLException e) {
@@ -108,11 +104,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public List<Item> findByName(String key) {
         List<Item> result = new ArrayList<>();
-        try {
-            Statement stmt = connection.createStatement();
-            String sql = "SELECT " + TABLE_ITEMS
-                    + "WHERE name=" + key;
-            ResultSet resultSet = stmt.executeQuery(sql);
+        String sql = "SELECT " + TABLE_ITEMS + "WHERE name=?";
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setString(1, key);
+            ResultSet resultSet = pst.executeQuery(sql);
             result = parseItem(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -129,11 +124,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public Item findById(String id) {
         List<Item> result = new ArrayList<>();
-        try {
-            Statement stmt = connection.createStatement();
-            String sql = "SELECT " + TABLE_ITEMS
-                    + "WHERE id=" + id;
-            ResultSet resultSet = stmt.executeQuery(sql);
+        String sql = "SELECT " + TABLE_ITEMS + "WHERE id=?";
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setInt(1, Integer.valueOf(id));
+            ResultSet resultSet = pst.executeQuery(sql);
             result = parseItem(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -192,8 +186,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     private boolean createTable() {
         boolean success = false;
-        try {
-            Statement stmt = connection.createStatement();
+        try (Statement stmt = connection.createStatement()) {
             String sql = "CREATE TABLE " + TABLE_ITEMS
                     + "(id INTEGER not NULL, "
                     + " name VARCHAR(255), "
