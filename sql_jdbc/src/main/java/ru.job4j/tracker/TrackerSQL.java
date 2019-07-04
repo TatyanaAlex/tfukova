@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import java.io.InputStream;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -20,6 +22,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
 
     private Connection connection;
 
+    public TrackerSQL(Connection connection) {
+        this.connection = connection;
+    }
+
     /**
      * Method adds new item.
      *
@@ -34,8 +40,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             pst.setInt(1, Integer.valueOf(item.getId()));
             pst.setString(2, item.getName());
             pst.setString(3, item.getDescription());
-            pst.setLong(4, item.getCreate());
-            pst.execute(sql);
+            pst.setTimestamp(4, new Timestamp(item.getCreate()));
+            pst.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -104,10 +110,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public List<Item> findByName(String key) {
         List<Item> result = new ArrayList<>();
-        String sql = "SELECT " + TABLE_ITEMS + "WHERE name=?";
+        String sql = "SELECT * FROM " + TABLE_ITEMS + " WHERE name=?";
         try (PreparedStatement pst = connection.prepareStatement(sql)) {
             pst.setString(1, key);
-            ResultSet resultSet = pst.executeQuery(sql);
+            ResultSet resultSet = pst.executeQuery();
             result = parseItem(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -124,7 +130,7 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     @Override
     public Item findById(String id) {
         List<Item> result = new ArrayList<>();
-        String sql = "SELECT " + TABLE_ITEMS + "WHERE id=?";
+        String sql = "SELECT * FROM " + TABLE_ITEMS + " WHERE id=?";
         try (PreparedStatement pst = connection.prepareStatement(sql)) {
             pst.setInt(1, Integer.valueOf(id));
             ResultSet resultSet = pst.executeQuery(sql);
@@ -207,11 +213,17 @@ public class TrackerSQL implements ITracker, AutoCloseable {
      */
     private List<Item> parseItem(ResultSet resultSet) throws SQLException {
         List<Item> result = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         while (resultSet.next()) {
             String id = resultSet.getString("id");
             String name = resultSet.getString("name");
             String description = resultSet.getString("description");
-            long create = resultSet.getLong("created_on");
+            long create = 0;
+            try {
+                create = sdf.parse(resultSet.getString("created_on")).getTime();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             Item item = new Item(name, description, create);
             item.setId(id);
             result.add(item);
